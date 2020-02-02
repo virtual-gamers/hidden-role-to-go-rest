@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  db:
+     image: mysql:8.0
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: passw0rd
+       MYSQL_DATABASE: hiddenroletogo
+       MYSQL_USER: merlin
+       MYSQL_PASSWORD: passw0rd
+     ports:
+       - "3306:3306"
+     expose:
+       - 3306
+
+  rabbitmq:
+    image: rabbitmq:management
+    command: rabbitmq-server
+    environment:
+      - RABBITMQ_DEFAULT_USER=merlin
+      - RABBITMQ_DEFAULT_PASS=passw0rd
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    expose:
+      - 5672
+      - 15672
